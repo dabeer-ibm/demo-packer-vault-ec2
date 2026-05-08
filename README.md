@@ -1,6 +1,6 @@
 # Demo: HCP Packer + Vault + Terraform → EC2 (manual setup)
 
-End-to-end HashiCorp stack demo. Everything is set up manually via web UIs and CLIs — no bootstrap scripts.
+End-to-end HashiCorp stack demo. Everything is set up manually via web UIs and CLIs — no bootstrap scripts
 
 ![Architecture](assets/architecture.png)
 

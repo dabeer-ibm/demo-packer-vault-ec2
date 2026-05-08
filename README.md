@@ -2,19 +2,9 @@
 
 End-to-end HashiCorp stack demo. Everything is set up manually via web UIs and CLIs — no bootstrap scripts.
 
-```
-                 ┌──────────────────┐  dynamic AWS creds   ┌──────────┐    publish   ┌─────────────┐
-                 │   HCP Vault      │ ───────────────────▶ │  Packer  │ ───────────▶ │ HCP Packer  │
-                 │  • aws/          │                       │  build   │   metadata   │  bucket /   │
-                 │  • kv/demo/ssh   │                       └──────────┘              │  channel    │
-                 └────────┬─────────┘                                                 └──────┬──────┘
-                          │ dynamic AWS creds + ssh pubkey                                   │
-                          ▼                                                                  ▼ AMI ID
-   git push (main) ──▶ ┌────────────────┐    plan + auto-apply   ┌─────────────────────────┐
-                       │  HCP Terraform │ ───────────────────▶  │  EC2 in default VPC/SG  │
-                       │   workspace    │                        └─────────────────────────┘
-                       └────────────────┘
-```
+![Architecture](assets/architecture.png)
+
+> Source: [assets/architecture.drawio](assets/architecture.drawio)
 
 > **Security note:** never paste real tokens/keys into chat or shared docs. If a credential is exposed, rotate it immediately.
 

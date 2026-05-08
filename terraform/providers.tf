@@ -7,7 +7,7 @@ provider "vault" {}
 # Pull dynamic AWS credentials from Vault. The lease lasts the apply lifecycle;
 # Terraform automatically revokes the IAM user when the resource is destroyed.
 # -----------------------------------------------------------------------------
-resource "vault_aws_access_credentials" "demo" {
+data "vault_aws_access_credentials" "demo" {
   backend = "aws"
   role    = var.vault_aws_role
   type    = "creds"
@@ -18,9 +18,9 @@ resource "vault_aws_access_credentials" "demo" {
 # -----------------------------------------------------------------------------
 provider "aws" {
   region     = var.aws_region
-  access_key = vault_aws_access_credentials.demo.access_key
-  secret_key = vault_aws_access_credentials.demo.secret_key
-  token      = vault_aws_access_credentials.demo.security_token
+  access_key = data.vault_aws_access_credentials.demo.access_key
+  secret_key = data.vault_aws_access_credentials.demo.secret_key
+  token      = data.vault_aws_access_credentials.demo.security_token
 }
 
 # -----------------------------------------------------------------------------
